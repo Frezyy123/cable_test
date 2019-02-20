@@ -10,18 +10,22 @@ use Mix.Config
 config :cables,
   profiles: [
     default: [
-      max_streams: 1,
-      max_requests: 1,
-      min_connections: 2,
-      max_connections: 20,
-      threshold: 2,
+      max_streams: 100,
+      max_requests: 100,
+      min_connections: 200,
+      max_connections: 10000,
+      threshold: 500,
       connection_opts: %{
         retry: 0,
         http_opts: %{keepalive: :infinity}
       }
+    ],
+    http: [
+      max_requests: :infinity,
+      max_connections: 2048,
+      max_streams: 1
     ]
   ]
-
 
 config :logger,
   level_info: :error,

@@ -8,13 +8,14 @@ defmodule CableTest.Application do
   def start(_type, _args) do
     # List all child processes to be supervised
     {module, params} =
-      Cables.child_spec(CableTest, "http://example.org/")
+      Cables.child_spec(CableTest, "http://localhost:4000/")
 
     children = [
       %{
         id: {CableTest, make_ref()},
         start: {module, :start_link, [params]}
-      }
+      },
+
       # Starts a worker by calling: CableTest.Worker.start_link(arg)
       # {CableTest.Worker, arg},
     ]
